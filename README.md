@@ -3,6 +3,16 @@ PROJET
 
 Le projet OpenHarcèlement permet de harceler facilement par mail une personne.
 
+INSTALLATION
+============
+
+Pour installer le logiciel :
+
+* copier le dossier sur un serveur web (PHP >= 5.3)
+* modifier le fichier config/config.inc.php selon vos besoins
+* vous avez un exemple debase sqlite dans le dossier db ou le fichier SQL dans le dossier db
+* Ajouter le fichier cron.php dans votre crontab
+
 USAGE
 =====
 
@@ -24,6 +34,14 @@ Lors de la créaction d'un harcèlement, vous avez reçu un email contenant un h
 * URL : www/api.php?[hash de suppression]
 * Méthode : DELETE
 * L'api retourne un code HTTP 200 en cas de succès, un autre code en cas d'échec
+
+CLIENT
+======
+
+Il existe un client lourd pour cette API : QOpenHarcèlement
+Les sources de ce client se trouve dans le dossier client, il vous suffit de le compiler, de modifier le fichier qopenharcelement.ini avec la bonne valeur pour l'URL de l'api et vous pourrez utilisez l'API simplement
+
+Attention : le client actuel est un proof of concept, il n'est pas réputé stable ou fini.
 
 LICENCE
 =======
