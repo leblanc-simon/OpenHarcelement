@@ -28,6 +28,13 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 
+/**
+ * Classe gérant la relation BDD - PHP pour les données du harcèlement
+ *
+ * @package   OpenHarcelement
+ * @author    Simon Leblanc <contact@leblanc-simon.eu>
+ * @license   http://www.opensource.org/licenses/bsd-license.php BSD
+ */
 class Harcelement
 {
   const TABLE_NAME = 'harcelement';
@@ -44,6 +51,12 @@ class Harcelement
   private $active;
   private $number_send;
   
+  
+  /**
+   * Constructeur de la classe (prend en paramètre les champs de la table)
+   *
+   * @access  public
+   */
   public function __construct($id = 0, $hash = '', $name = '', $email = '', $email_victim = '', $time = '+1 days', $subject = '', $message = '', $next = null, $active = true, $number_send = 0)
   {
     $this->setId($id);
@@ -60,6 +73,12 @@ class Harcelement
   }
   
   
+  /**
+   * Methode permettant d'enregistrer (INSERt ou UPDATE) un harcèlement
+   *
+   * @return  bool  true en cas de succès, false en cas d'échec
+   * @access  public
+   */
   public function save()
   {
     $datas = array(
@@ -83,6 +102,12 @@ class Harcelement
   }
   
   
+  /**
+   * Methode permettant de supprimer un harcèlement
+   *
+   * @return  bool  true en cas de succès, false en cas d'échec
+   * @access  public
+   */
   public function delete()
   {
     if ($this->id === 0) {
@@ -93,6 +118,12 @@ class Harcelement
   }
   
   
+  /**
+   * Méthode permettant de peupler un objet avec les données issu d'un tableau
+   *
+   * @param   array   $datas  Le tableau permettant de peupler l'objet
+   * @access  public
+   */
   public function populate($datas)
   {
     $this->setId($datas['id']);
@@ -109,12 +140,24 @@ class Harcelement
   }
   
   
+  /**
+   * Setter de la propriété $id
+   *
+   * @param   int   $v   L'identifiant du harcèlement
+   * @access  public
+   */
   public function setId($v)
   {
     $this->id = (int)$v;
   }
   
   
+  /**
+   * Setter de la propriété $next
+   *
+   * @param   null|DateTime|string   $v   La date du prochain harcèlement
+   * @access  public
+   */
   public function setNext($v)
   {
     if ($v !== null) {
@@ -129,17 +172,37 @@ class Harcelement
   }
   
   
+  /**
+   * Setter de la propriété $active
+   *
+   * @param   bool    $v   true pour activer le harcèlement, false sinon
+   * @access  public
+   */
   public function setActive($v)
   {
     $this->active = (bool)$v;
   }
   
   
+  /**
+   * Setter de la propriété $number_send
+   *
+   * @param   int     $v   Le nombre de harcèlement déjà envoyé
+   * @access  public
+   */
   public function setNumberSend($v)
   {
     $this->number_send = (int)$v;
   }
   
+  
+  /**
+   * Getter de la propriété $next
+   *
+   * @param   bool  $to_string  true si on souhaite la date au format texte, false pour avoir du DateTime
+   * @return  DateTime|string   La date du prochain harcèlement
+   * @access  public
+   */
   public function getNext($to_string = false)
   {
     if ($this->next === null) {
@@ -154,6 +217,13 @@ class Harcelement
   }
   
   
+  /**
+   * Surcharge pour activer les getter et setter pour les propriétés ne nécessitant pas de traitements particulier
+   *
+   * @param   string  $name       Le nom de la méthode appelée
+   * @param   array   $arguments  Les arguments appelés
+   * @access  public
+   */
   public function __call($name, $arguments)
   {
     if (substr($name, 0, 3) === 'set') {

@@ -28,10 +28,31 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 
+/**
+ * Classe gérant la connexion à la base de données
+ *
+ * @package   OpenHarcelement
+ * @author    Simon Leblanc <contact@leblanc-simon.eu>
+ * @license   http://www.opensource.org/licenses/bsd-license.php BSD
+ */
 class Connection
 {
+  /**
+   * Le handle de connexion à la base de données
+   * @var     PDO
+   * @access  private
+   * @static
+   */
   private static $conn = null;
   
+  
+  /**
+   * Méthode permettant de récupérer la connexion à la base de données
+   *
+   * @return  PDO   La connexion PDO à la base de données
+   * @access  public
+   * @static
+   */
   public static function get()
   {
     if (Connection::$conn === null) {
@@ -43,6 +64,14 @@ class Connection
   }
   
   
+  /**
+   * Méthode permettant de mettre à jour ou insérer des données dans une table
+   *
+   * @param   string  $table  Le nom de la table à mettre à jour
+   * @param   array   $datas  Les données à mettre à jour sur la table (array('column' => array('value' => 'la valeur', 'type' => PDO::PARAM_STR)))
+   * @return  bool            true en cas de succès, false sinon
+   * @access  public
+   */
   public static function updateData($table, $datas)
   {
     if (isset($datas['id']) === false) {
@@ -86,6 +115,14 @@ class Connection
   }
   
   
+  /**
+   * Méthode permettant de supprimer des données dans une table
+   *
+   * @param   string  $table  Le nom de la table à mettre à jour
+   * @param   int     $id     L'identifiant des données à supprimer sur la table
+   * @return  bool            true en cas de succès, false sinon
+   * @access  public
+   */
   public static function deleteData($table, $id)
   {
     $sql = 'DELETE FROM '.$table.' WHERE id = :id';

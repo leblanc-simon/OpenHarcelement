@@ -28,8 +28,23 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 
+/**
+ * Classe gérant l'api de l'application
+ *
+ * @package   OpenHarcelement
+ * @author    Simon Leblanc <contact@leblanc-simon.eu>
+ * @license   http://www.opensource.org/licenses/bsd-license.php BSD
+ */
 class Api
 {
+  /**
+   * Méthode permettant l'ajout d'un harcèlement
+   *
+   * @param   array   $post   Le tableau contenant les données à ajouter
+   * @return  int             Le code http à renvoyer (201 en cas de succès, sinon des codes HTTP d'erreur)
+   * @access  public
+   * @static
+   */
   public static function set($post)
   {
     if (($response_code = Api::checkSet($post)) !== true) {
@@ -55,6 +70,15 @@ class Api
     }
   }
   
+  
+  /**
+   * Méthode permettant de supprimer un harcèlement
+   *
+   * @param   array   $server   Le tableau contenant les données du serveur (pour récupérer le QUERY_STRING)
+   * @return  int               Le code http à renvoyer (200 en cas de succès, sinon des codes HTTP d'erreur)
+   * @access  public
+   * @static
+   */
   public static function cancel($server)
   {
     if (isset($server['QUERY_STRING']) === false || empty($server['QUERY_STRING']) === true) {
@@ -84,6 +108,15 @@ class Api
   }
   
   
+  /**
+   * Méthode permettant de vérifier que les données pour l'ajout d'un harcèlement sont correctes
+   *
+   * @param   array   $post   Le tableau contenant les données à vérifier
+   * @return  int|bool        Le code http d'erreur à renvoyer en cas d'erreur, true en cas de succès
+   * @access  private
+   * @static
+   * 
+   */
   private static function checkSet($post)
   {
     $required_datas = array(

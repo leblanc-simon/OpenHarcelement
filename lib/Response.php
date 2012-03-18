@@ -28,6 +28,13 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 
+/**
+ * Classe gérant la réponse HTTP au client
+ *
+ * @package   OpenHarcelement
+ * @author    Simon Leblanc <contact@leblanc-simon.eu>
+ * @license   http://www.opensource.org/licenses/bsd-license.php BSD
+ */
 class Response
 {
   const ERROR = 400;
@@ -87,6 +94,14 @@ class Response
     505 => 'HTTP Version Not Supported',
   );
   
+  
+  /**
+   * Envoi les données voulues au client
+   *
+   * @param   int   $code   Le code status HTTP
+   * @access  public
+   * @static
+   */
   public static function send($code)
   {
     if (isset(Response::$status_text[$code]) === false) {

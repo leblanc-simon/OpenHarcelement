@@ -28,8 +28,21 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 
+/**
+ * Classe gérant les tâches d'envoi de mail
+ *
+ * @package   OpenHarcelement
+ * @author    Simon Leblanc <contact@leblanc-simon.eu>
+ * @license   http://www.opensource.org/licenses/bsd-license.php BSD
+ */
 class Task
 {
+  /**
+   * Tâche permettant d'envoyer les harcèlements en cours
+   *
+   * @access public
+   * @static
+   */
   public static function send()
   {
     $sql = 'SELECT * FROM harcelement WHERE active = :active AND (next <= :next OR next IS NULL)';
@@ -51,6 +64,13 @@ class Task
   }
   
   
+  /**
+   * Tâche permettant d'envoyer un mail de confirmation à l'auteur du harcèlement
+   *
+   * @param   Harcelement   $harcelement  Le harcèlement concerné
+   * @access  public
+   * @static
+   */
   public static function alertCreator(Harcelement $harcelement)
   {
     $email_tpl = Config::get('email_tpl');
@@ -74,6 +94,13 @@ class Task
   }
   
   
+  /**
+   * Méthode permettant d'envoyer un mail de harcèlement et de préparer le suivant
+   *
+   * @param   Harcelement   $harcelement  Le harcèlement concerné
+   * @access  private
+   * @static
+   */
   private static function sendMail(Harcelement $harcelement)
   {
     if (mail($harcelement->getEmailVictim(), $harcelement->getSubject(), $harcelement->getMessage(), Task::getHeader($harcelement->getName().' <'.$harcelement->getEmail().'>'))) {
@@ -88,6 +115,14 @@ class Task
     }
   }
   
+  
+  /**
+   * Méthode permettant d'obtenir le bon header pour les mails envoyés
+   *
+   * @param   string  $return_path  L'adresse sur laquelle il faudra répondre
+   * @access  private
+   * @static
+   */
   private static function getHeader($return_path)
   {
     $header_mail = 'Return-Path: '.$return_path."\r\n".
