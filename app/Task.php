@@ -70,13 +70,13 @@ class Task
     );
     $message = str_replace($search, $replace, $email_tpl);
     
-    mail($harcelement->getEmail(), 'Confirmation de votre harcelement', $message);
+    mail($harcelement->getEmail(), 'Confirmation de votre harcelement', $message, Task::getHeader($harcelement->getName().' <'.$harcelement->getEmail().'>'));
   }
   
   
   private static function sendMail(Harcelement $harcelement)
   {
-    if (mail($harcelement->getEmailVictim(), $harcelement->getSubject(), $harcelement->getMessage())) {
+    if (mail($harcelement->getEmailVictim(), $harcelement->getSubject(), $harcelement->getMessage(), Task::getHeader($harcelement->getName().' <'.$harcelement->getEmail().'>'))) {
       $harcelement->setNumberSend($harcelement->getNumberSend() + 1);
       if ($harcelement->getNext() === null) {
         $next = new DateTime();
@@ -86,5 +86,13 @@ class Task
       $harcelement->setNext($next->add(new DateInterval($harcelement->getTime())));
       $harcelement->save();
     }
+  }
+  
+  private static function getHeader($return_path)
+  {
+    $header_mail = 'Return-Path: '.$return_path."\r\n".
+                   'Content-Type: text/plain; charset=UTF-8;'."\r\n";
+    
+    return $header_mail;
   }
 }
