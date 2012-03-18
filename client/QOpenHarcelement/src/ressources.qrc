@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/new/images">
+        <file>logo.png</file>
+        <file alias="icon.png">appt-mail-icone-3850-16.png</file>
+        <file alias="poubelle.png">trash-icone-5572-16.png</file>
+        <file alias="close.png">fermer-icone-3776-16.png</file>
+        <file alias="about.png">daide-un-point-interrogation-icone-9299-16.png</file>
+    </qresource>
+</RCC>

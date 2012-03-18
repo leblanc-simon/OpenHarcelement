@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>452</width>
+    <height>593</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QOpenHarcèlement</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="ressources.qrc">
+    <normaloff>:/new/images/icon.png</normaloff>:/new/images/icon.png</iconset>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>16</width>
+    <height>16</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QLineEdit" name="lineEditName">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>431</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="statusTip">
+     <string>Indiquez votre nom afin que la victime sache tout de même qui vous êtes</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelName">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>441</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Votre nom</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelEmail">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>441</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Votre adresse e-mail</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditEmail">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>431</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="statusTip">
+     <string>Indiquez votre adresse e-mail pour que la victime puisse vous répondre</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelEmailVictim">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>441</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>L'adresse e-mail de votre victime</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditEmailVictim">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>130</y>
+      <width>431</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="statusTip">
+     <string>Indiquez l'adresse e-mail de votre victime pour qu'elle puisse recevoir les e-mails</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelMessage">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>210</y>
+      <width>441</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Votre message</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEditMessage">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>230</y>
+      <width>431</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="statusTip">
+     <string>Ceci sera le message que votre victime recevra</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditSubject">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>180</y>
+      <width>431</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="statusTip">
+     <string>Indiquez le sujet du mail que vous souhaitez envoyer à votre victime</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelSubject">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>160</y>
+      <width>441</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Le sujet de votre mail</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>470</y>
+      <width>431</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="statusTip">
+     <string>La victime recevra un message tous les ...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelTime">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>450</y>
+      <width>441</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>La récurrence de votre message</string>
+    </property>
+   </widget>
+   <widget class="QDialogButtonBox" name="buttonBox">
+    <property name="geometry">
+     <rect>
+      <x>255</x>
+      <y>510</y>
+      <width>181</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="standardButtons">
+     <set>QDialogButtonBox::Close|QDialogButtonBox::Ok</set>
+    </property>
+    <property name="centerButtons">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>452</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>?</string>
+    </property>
+    <addaction name="actionDelete"/>
+    <addaction name="actionAbout"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <action name="actionDelete">
+   <property name="icon">
+    <iconset resource="ressources.qrc">
+     <normaloff>:/new/images/poubelle.png</normaloff>:/new/images/poubelle.png</iconset>
+   </property>
+   <property name="text">
+    <string>Supprimer un harcèlement</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="ressources.qrc">
+     <normaloff>:/new/images/about.png</normaloff>:/new/images/about.png</iconset>
+   </property>
+   <property name="text">
+    <string>À propos</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="icon">
+    <iconset resource="ressources.qrc">
+     <normaloff>:/new/images/close.png</normaloff>:/new/images/close.png</iconset>
+   </property>
+   <property name="text">
+    <string>Quitter</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F4</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>lineEditName</tabstop>
+  <tabstop>lineEditEmail</tabstop>
+  <tabstop>lineEditEmailVictim</tabstop>
+  <tabstop>lineEditSubject</tabstop>
+  <tabstop>textEditMessage</tabstop>
+  <tabstop>comboBox</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
+ <resources>
+  <include location="ressources.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>345</x>
+     <y>548</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>225</x>
+     <y>296</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
