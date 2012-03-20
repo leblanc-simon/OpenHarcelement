@@ -90,7 +90,12 @@ class Task
     );
     $message = str_replace($search, $replace, $email_tpl);
     
-    mail($harcelement->getEmail(), 'Confirmation de votre harcelement', $message, Task::getHeader($harcelement->getName().' <'.$harcelement->getEmail().'>'));
+    $to      = array($harcelement->getEmail() => $harcelement->getName());
+    $from    = Config::get('from');
+    $subject = 'Confirmation de votre harcèlement';
+    $replyto = null;
+    
+    return Task::processMail($to, $from, $subject, $message, $replyto);
   }
   
   
@@ -103,7 +108,13 @@ class Task
    */
   private static function sendMail(Harcelement $harcelement)
   {
-    if (mail($harcelement->getEmailVictim(), $harcelement->getSubject(), $harcelement->getMessage(), Task::getHeader($harcelement->getName().' <'.$harcelement->getEmail().'>'))) {
+    $to      = $harcelement->getEmailVictim();
+    $from    = Config::get('from');
+    $subject = $harcelement->getSubject();
+    $message = $harcelement->getMessage();
+    $replyto = array($harcelement->getEmail() => $harcelement->getName());
+    
+    if (Task::processMail($to, $from, $subject, $message, $replyto)) {
       $harcelement->setNumberSend($harcelement->getNumberSend() + 1);
       if ($harcelement->getNext() === null) {
         $next = new DateTime();
@@ -117,17 +128,48 @@ class Task
   
   
   /**
-   * Méthode permettant d'obtenir le bon header pour les mails envoyés
+   * Méthode permettant d'envoyer un mail via SwiftMailer
    *
-   * @param   string  $return_path  L'adresse sur laquelle il faudra répondre
+   * @param   string|array  $to       L'adresse mail vers laquelle on envoi le mail
+   * @param   string|array  $from     L'adresse mail qui envoi le mail
+   * @param   string        $subject  Le sujet du message
+   * @param   string        $message  Le message
+   * @param   string|array  $replyto  L'adresse mail où répondre
+   * @return  bool                    Vrai si le mail a été envoyé, faux sinon
    * @access  private
    * @static
    */
-  private static function getHeader($return_path)
+  private static function processMail($to, $from, $subject, $message, $replyto = null)
   {
-    $header_mail = 'Return-Path: '.$return_path."\r\n".
-                   'Content-Type: text/plain; charset=UTF-8;'."\r\n";
+    try {
+      $transport_bin = Config::get('sendmail_bin');
+      if ($transport_bin === null) {
+        $transport = Swift_MailTransport::newInstance();
+      } else {
+        $transport = Swift_SendmailTransport::newInstance($transport_bin);
+      }
+      
+      $mailer = Swift_Mailer::newInstance($transport);
+      
+      $message = Swift_Message::newInstance($subject)
+                  ->setFrom($from)
+                  ->setTo($to)
+                  ->setBody($message);
+      
+      if ($replyto !== null) {
+        $message->setReplyTo($replyto);
+      }
+      
+      $result = $mailer->send($message);
+    } catch (Exception $e) {
+      // Erreur lors de l'envoi du mail
+      $result = 0;
+    }
     
-    return $header_mail;
+    if ($result > 0) {
+      return true;
+    }
+    
+    return false;
   }
 }

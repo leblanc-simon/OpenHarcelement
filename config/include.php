@@ -31,6 +31,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 define('LIB_DIR', __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'lib');
 define('CONFIG_DIR', __DIR__);
 define('APP_DIR', __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'app');
+define('VENDOR_DIR', __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'vendor');
 
 require_once LIB_DIR.DIRECTORY_SEPARATOR.'Config.php';
 require_once LIB_DIR.DIRECTORY_SEPARATOR.'Connection.php';
@@ -41,3 +42,5 @@ require_once CONFIG_DIR.DIRECTORY_SEPARATOR.'config.inc.php';
 
 require_once APP_DIR.DIRECTORY_SEPARATOR.'Api.php';
 require_once APP_DIR.DIRECTORY_SEPARATOR.'Task.php';
+
+require_once VENDOR_DIR.DIRECTORY_SEPARATOR.'swiftmailer'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'swift_required.php';
