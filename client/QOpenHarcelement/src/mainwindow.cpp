@@ -76,7 +76,7 @@ void MainWindow::launch()
     h->email_victim = this->ui->lineEditEmailVictim->text();
     h->subject = this->ui->lineEditSubject->text();
     h->message = this->ui->textEditMessage->toPlainText();
-    h->time = this->time.at(this->ui->comboBox->currentIndex());
+    h->time = this->time.at(this->ui->comboBox->currentIndex() - 1);
     h->callAdd();
 }
 
