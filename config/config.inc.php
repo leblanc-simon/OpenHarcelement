@@ -37,6 +37,9 @@ $config = array(
     'PT6H' => '6 heures',
     'P1D' => '1 jour',
   ),
+  'from' => array('openharcelement@leblanc-simon.fr' => 'OpenHarcelement'),
+  // Uncomment this line for don't use mail() function
+  //'sendmail_bin' => '/usr/sbin/sendmail',
   'email_tpl' => <<<EOF
 Bonjour %%name%%,
 
